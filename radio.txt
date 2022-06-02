@@ -1,0 +1,28 @@
+from microbit import *
+import radio
+import random
+
+radio.config(group=     )
+players =      
+ID =      
+display.show(ID)
+if ID ==      :
+    hasPac = True
+else:
+    hasPac = False
+radio.on()
+
+while True:
+    message = radio.recieve()                      
+    if accelerometer.was_gesture('shake'):
+        if hasPac:
+            sendTo = random.randint(1, players)                          
+            if sendTo != ID:
+                display.clear()
+                radio.send(str(sendTo))
+    if message:
+        if message == str(ID) :
+            hasPac = True
+            display.show(Image.PACMAN)
+        else:
+            hasPac = False
